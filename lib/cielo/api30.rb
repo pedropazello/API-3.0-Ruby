@@ -1,12 +1,14 @@
 require "cielo/api30/environment"
 require "cielo/api30/merchant"
 require "cielo/api30/client"
+require "cielo/api30/option_template"
 
 require "cielo/api30/address"
 require "cielo/api30/credit_card"
 require "cielo/api30/customer"
 require "cielo/api30/payment"
 require "cielo/api30/recurrent_payment"
+require "cielo/api30/fraud_analysis"
 require "cielo/api30/sale"
 
 require "cielo/api30/request/create_sale_request"

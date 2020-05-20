@@ -14,7 +14,9 @@ module Cielo
 
         def execute(sale)
           uri = URI.parse([@environment.api, "1", "sales"].join("/"))
-          Cielo::API30::Sale.from_json(send_request("POST", uri, sale))
+          response = send_request("POST", uri, sale)
+
+          Cielo::API30::Sale.from_json(response)
         end
       end
     end

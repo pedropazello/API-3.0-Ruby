@@ -46,7 +46,8 @@ module Cielo
                     :bar_code_number,
                     :digitable_line,
                     :address,
-                    :return_info
+                    :return_info,
+                    :fraud_analysis
 
       def initialize(amount, installments: 1)
         @amount = amount
@@ -99,6 +100,7 @@ module Cielo
         payment.digitable_line = data["DigitableLine"]
         payment.address = data["Address"]
         payment.return_info = ReturnInfo.new(payment.return_code)
+        payment.fraud_analysis = FraudAnalysis.from_json(data["FraudAnalysis"])
 
         payment
       end
@@ -128,7 +130,8 @@ module Cielo
           BarCodeNumber: @bar_code_number,
           DigitableLine: @digitable_line,
           Address: @address,
-          ReturnInfo: @return_info
+          ReturnInfo: @return_info,
+          FraudAnalysis: fraud_analysis,
         }
       end
     end

@@ -61,8 +61,8 @@ module Cielo
 
         if cart.present?
           json[:Cart] = {
-            IsGift:false,
-            ReturnsAccepted:true,
+            IsGift: cart[:is_gift],
+            ReturnsAccepted: cart[:returns_accepted],
             Items: cart[:items].map do |item|
               {
                 GiftCategory: item[:gift_category],

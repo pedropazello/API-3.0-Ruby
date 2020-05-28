@@ -14,7 +14,9 @@ module Cielo
                     :status_description,
                     :fraud_analysis_reason_code,
                     :id,
-                    :json_response
+                    :json_response,
+                    :cart,
+                    :shipping
 
       def initialize(provider: "Cybersource", sequence: "AnalyseFirst",
         sequence_criteria: "Always")
@@ -54,6 +56,38 @@ module Cielo
             HostName: browser[:host_name],
             IpAddress: browser[:ip_address],
             Type: browser[:type],
+          }
+        end
+
+        if cart.present?
+          json[:Cart] = {
+            IsGift:false,
+            ReturnsAccepted:true,
+            Items: cart[:items].map do |item|
+              {
+                GiftCategory: item[:gift_category],
+                HostHedge: item[:host_hedge],
+                NonSensicalHedge: item[:non_sensical_hedge],
+                ObscenitiesHedge: item[:obscenities_hedge],
+                PhoneHedge: item[:phone_hedge],
+                Name: item[:name],
+                Quantity: item[:quantity],
+                Sku: item[:sku],
+                UnitPrice: item[:unit_price],
+                Risk: item[:risk],
+                TimeHedge: item[:time_hedge],
+                Type: item[:type],
+                VelocityHedge: item[:velocity_hedge],
+              }
+            end
+          }
+        end
+
+        if shipping.present?
+          json[:Shipping] = {
+            Addressee: shipping[:addressee],
+            Method: shipping[:method],
+            Phone: shipping[:phone]
           }
         end
 

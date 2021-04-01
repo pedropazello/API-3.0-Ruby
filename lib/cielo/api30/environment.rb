@@ -24,7 +24,7 @@ module Cielo
       #
       # @return [Environment] a configured Environment for testing
       def self.sandbox
-        new("https://apisandbox.cieloecommerce.cielo.com.br/", "https://apiquerysandbox.cieloecommerce.cielo.com.br/")
+        new("https://apisandbox.cieloecommerce.cielo.com.br", "https://apiquerysandbox.cieloecommerce.cielo.com.br")
       end
     end
   end
